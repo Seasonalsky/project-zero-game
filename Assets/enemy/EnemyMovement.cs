@@ -22,10 +22,13 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("my force vector is " + (target.position - self.position));
+        float x = target.position.x - self.position.x;
+        float y = target.position.y - self.position.y;
 
-        physics.AddForce(new Vector2(target.position.x - self.position.x, target.position.y - self.position.y) * force);
 
+        physics.AddForce(new Vector2(x, y) / Mathf.Sqrt(x*x + y*y) * force);
+
+        print("my force vector to target is (" + x + ", " + y + ").");
         
     }
 }
